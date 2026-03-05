@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เลือกวันและเวลา</title>
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <style>
+        body { font-family: sans-serif; padding: 20px; text-align: center; }
+        select, input { width: 100%; padding: 10px; margin: 10px 0; border-radius: 8px; border: 1px solid #ccc; }
+        button { width: 100%; padding: 12px; background-color: #00b900; color: white; border: none; border-radius: 8px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h3>📅 เลือกนัดหมาย</h3>
+    <label>เดือนที่ต้องการ:</label>
+    <select id="month">
+        <option value="มกราคม">มกราคม</option>
+        <option value="กุมภาพันธ์">กุมภาพันธ์</option>
+        <option value="มีนาคม">มีนาคม</option>
+        </select>
+
+    <label>เวลาที่สะดวก:</label>
+    <input type="time" id="time">
+
+    <button onclick="sendData()">ยืนยันข้อมูล</button>
+
+    <script>
+        // เปลี่ยน 'YOUR_LIFF_ID' เป็นไอดีที่คุณได้จาก LINE Developers
+        async function main() {
+            await liff.init({ liffId: "2009331879-7xYXmTYm" });
+        }
+        main();
+
+        function sendData() {
+            const m = document.getElementById('month').value;
+            const t = document.getElementById('time').value;
+            const msg = `[จองคิว] เดือน: ${m} เวลา: ${t}`;
+
+            liff.sendMessages([{
+                type: 'text',
+                text: msg
+            }]).then(() => {
+                liff.closeWindow(); // ส่งเสร็จปิดหน้าต่างทันที
+            }).catch((err) => {
+                console.error('Error sending message', err);
+            });
+        }
+    </script>
+</body>
+</html>
