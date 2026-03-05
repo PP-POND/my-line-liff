@@ -28,7 +28,7 @@
     <script>
         // เปลี่ยน 'YOUR_LIFF_ID' เป็นไอดีที่คุณได้จาก LINE Developers
         async function main() {
-            await liff.init({ liffId: "YOUR_LIFF_ID" });
+            await liff.init({ liffId: "2009331879-7xYXmTYm" });
         }
         main();
 
@@ -48,4 +48,5 @@
         }
     </script>
 </body>
+
 </html>
